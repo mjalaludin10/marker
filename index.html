@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Marker Augmented Reality</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+        }
+
+        header {
+            padding: 25px 15px;
+            text-align: center;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(6px);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #cfd8dc;
+        }
+
+        .container {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 25px rgba(0,255,255,0.6);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            margin: 8px 0 4px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #b0bec5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #aaa;
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* Fullscreen Image */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(0,255,255,0.6);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Daftar Marker Augmented Reality</h1>
+    <p>Arahkan kamera aplikasi ke marker berikut untuk menampilkan objek 3D</p>
+</header>
+
+<div class="container">
+
+    <div class="card" onclick="openImage(this)">
+        <img src="MarkerGedungUtama.png" alt="Marker Gedung">
+        <h3>Marker Gedung Sekolah</h3>
+        <p>Digunakan untuk menampilkan denah gedung utama</p>
+    </div>
+
+    <div class="card" onclick="openImage(this)">
+        <img src="pattern-Labkom.png" alt="Marker Lab">
+        <h3>Marker Laboratorium Komputer</h3>
+        <p>Menampilkan objek 3D ruang lab komputer</p>
+    </div>
+
+    <div class="card" onclick="openImage(this)">
+        <img src="marker3.jpg" alt="Marker Guru">
+        <h3>Marker Ruang Guru</h3>
+        <p>Digunakan untuk visualisasi ruang guru</p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 | Media Marker Augmented Reality Berbasis Unity
+</footer>
+
+<!-- Overlay Fullscreen -->
+<div class="overlay" id="overlay" onclick="closeImage()">
+    <img id="overlayImg">
+</div>
+
+<script>
+    function openImage(card) {
+        const img = card.querySelector("img");
+        document.getElementById("overlayImg").src = img.src;
+        document.getElementById("overlay").style.display = "flex";
+    }
+
+    function closeImage() {
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
